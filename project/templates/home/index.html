@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<link href="/css/index-less.d744090.css" rel="stylesheet"></head>
+<body>
+  <script>
+  </script>
+  <div th:class="${haderClass}">
+    <div class="top-wrapper">
+      <div class="img-wrapper">
+        <p class="rate">
+          <span th:text="${rate}"></span>%
+        </p>
+        <span class="text" >下款率评估</span>
+      </div>
+    </div>
+    <div class="timer">
+      <span>报告时间</span> <span th:text="${generateTime}"></span>
+    </div>
+  </div>
+
+  <div class="mp-body">
+    <div class="mp-body-wrapper">
+      <div class="mp-summary">
+        <div class="mp-summary-header">
+          <span class="mp-summary-header--title">检测结果</span>
+        </div>
+        <div class="mp-summary-body">
+          <p class="mp-summary-body--title"><span>·</span>解读</p>
+          <p class="mp-summary-body--content">
+            立方黑卡是根据网络行为大数据出具的面向社会人
+            群的综合报告，风险指数经供参考，分数越高，表
+            明借贷信用越好，下款的可能性越大。
+            <br/>
+            <br/>
+            下款评估率 <span class="red">0~40%</span>为较差,可根据检测结果的分
+            析与建议进行调整以提升下款评估率；下款评估率
+            <span class="red">41%~80%</span>为中等，注意检查结果的未通过项，根
+            据建议，避免相关事宜；下款评估率 <span class="red">81%~100%</span>为较
+            好，下款的概率很大。
+          </p>
+        </div>
+      </div>
+
+      <div class="mp-card" th:each="emp : ${rows}">
+        <div class="mp-card-header">
+          <span class="mp-card-header--title" th:text="${emp.title}"></span>
+        </div>
+        <div class="mp-card-body">
+          <div class="result">
+            <span class="mp-xx--title"><span>·</span>检测结果</span>
+          </div>
+          <div class="suggest" th:if="${emp.pass} == false">
+            <p class="mp-xx--title">
+              <span>·</span>分析与建议
+            </p>
+            <p class="suggest--content" th:text="${emp.suggest}">
+            </p>
+          </div>
+
+          <div class="status-img--success" th:if="${emp.pass} == true"></div>
+          <div class="status-img--error" th:if="${emp.pass} == false"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
